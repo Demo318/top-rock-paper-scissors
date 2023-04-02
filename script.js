@@ -7,14 +7,19 @@ function getComputerChoice() {
 
 function playOneRound(playerSelection, computerSelection) {
   let finalMessage = "You lost that round 😔";
-  let playerWon = false;
-  if (
+  let playerWon = -1;
+  
+  if (playerSelection == computerSelection){
+    finalMessage = "It's a draw!";
+    playerWon = 0;
+
+  } else if (
     playerSelection == "rock" && computerSelection == "scissors" ||
     playerSelection == "scissors" && computerSelection == "paper" ||
     playerSelection == "paper" && computerSelection == "rock"
   ) {
     finalMessage = "You won this round 😊";
-    playerWon = true;
+    playerWon = 1;
   }
   alert(finalMessage + `\n${playerSelection} vs. ${computerSelection}`);
   return playerWon;
@@ -34,14 +39,18 @@ function getPlayerSelection () {
 function game() {
   let playerWins = 0;
   let computerWins = 0;
-  while (playerWins < 5 && computerWins < 5){
-    if (playOneRound(getPlayerSelection(), getComputerChoice())) {
+
+  while (playerWins < 5 && computerWins < 5) {
+    let gameResult = playOneRound(getPlayerSelection(), getComputerChoice());
+    if (gameResult == 1) {
       playerWins ++;
-    } else {
+    } else if (gameResult == -1) {
       computerWins ++;
     }
   }
-  let endingMessage = playerWins > computerWins ? "You won the game!" : "You lost the game."
+
+  let endingMessage = playerWins > computerWins ? 
+    "You won the game!" : "You lost the game.";
   return endingMessage
 }
 
