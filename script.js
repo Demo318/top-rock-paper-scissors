@@ -16,7 +16,7 @@ function playOneRound(playerSelection, computerSelection) {
     finalMessage = "You won this round 😊";
     playerWon = true;
   }
-  alert(finalMessage);
+  alert(finalMessage + `\n${playerSelection} vs. ${computerSelection}`);
   return playerWon;
 }
 
