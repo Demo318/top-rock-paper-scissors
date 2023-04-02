@@ -6,27 +6,45 @@ function getComputerChoice() {
 }
 
 function playOneRound(playerSelection, computerSelection) {
-  let finalMessage = "The computer won 😔";
-  let winner = "computer"
+  let finalMessage = "You lost that round 😔";
+  let playerWon = false;
   if (
     playerSelection == "rock" && computerSelection == "scissors" ||
     playerSelection == "scissors" && computerSelection == "paper" ||
     playerSelection == "paper" && computerSelection == "rock"
   ) {
-    finalMessage = "You won 😊"
-    winner = "player"
+    finalMessage = "You won this round 😊";
+    playerWon = true;
   }
-  alert(finalMessage)
+  alert(finalMessage);
+  return playerWon;
 }
 
-let playerSelection = null;
-while (playerSelection == null) {
-  let playerInput = prompt("Choose one:", "rock, paper, or scissors");
-  if (moveOptions.includes(playerInput)) {
-    playerSelection = playerInput;
-  } else {
-    alert("That's not an option! Please choose rock, paper, or scissors.");
+function getPlayerSelection () {
+  while (true) {
+    let playerInput = prompt("Choose one:", "rock, paper, or scissors");
+    if (moveOptions.includes(playerInput)) {
+      return playerInput;
+    } else {
+      alert("That's not an option! Please choose rock, paper, or scissors.");
+    };
   };
-};
+}
 
-playOneRound(playerSelection, getComputerChoice())
+function game() {
+  let playerWins = 0;
+  let computerWins = 0;
+  while (playerWins < 5 && computerWins < 5){
+    if (playOneRound(getPlayerSelection(), getComputerChoice())) {
+      playerWins ++;
+    } else {
+      computerWins ++;
+    }
+  }
+  let endingMessage = playerWins > computerWins ? "You won the game!" : "You lost the game."
+  return endingMessage
+}
+
+while (true) {
+  alert(game());
+}
