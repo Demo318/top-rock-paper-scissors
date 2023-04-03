@@ -15,10 +15,31 @@ let computerScore = 0;
 
 for (button of selectionButtons) {
   button.addEventListener('click', function(e) {
+    tryGameReset()
     let result = playOneRound(this.id, getComputerChoice());
     results.textContent = result;
-    if (playerScore >= 5 || computerScore >= 5) console.log("reset the game");
+    if (playerScore >= 5 || computerScore >= 5) {
+      announceWinner()
+    };
   });
+}
+
+function tryGameReset() {
+  if (playerScore >= 5 || computerScore >= 5) {
+    results.textContent = "";
+    playerScore = 0;
+    computerScore = 0;
+  }
+}
+
+function announceWinner() {
+  let gameEndMessage = "";
+  if (playerScore >= 5) {
+    gameEndMessage = "Congratulations, you won!"
+  } else {
+    gameEndMessage = "Oh, no! The computer beat you."
+  }
+  results.innerHTML += `<br />${gameEndMessage}`;
 }
 
 function getComputerChoice() {
