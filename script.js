@@ -1,14 +1,23 @@
 const moveOptions = ["rock", "paper", "scissors"];
 
 const buttonsContainer = document.querySelector('.player-selections');
+
 const results = document.createElement('p');
 buttonsContainer.appendChild(results);
+
 const selectionButtons = document.querySelectorAll(".selection-button");
+
+const playerScoreCard = document.querySelector(".player-score > p");
+const computerScoreCard = document.querySelector(".computer-score > p");
+
+let playerScore = 0;
+let computerScore = 0;
 
 for (button of selectionButtons) {
   button.addEventListener('click', function(e) {
     let result = playOneRound(this.id, getComputerChoice());
     results.textContent = result;
+    if (playerScore >= 5 || computerScore >= 5) console.log("reset the game");
   });
 }
 
@@ -18,12 +27,10 @@ function getComputerChoice() {
 }
 
 function playOneRound(playerSelection, computerSelection) {
-  let finalMessage = "You lost that round 😔";
-  let playerWon = -1;
+  let finalMessage = "";
   
   if (playerSelection == computerSelection){
     finalMessage = "It's a draw!";
-    playerWon = 0;
 
   } else if (
     playerSelection == "rock" && computerSelection == "scissors" ||
@@ -31,21 +38,22 @@ function playOneRound(playerSelection, computerSelection) {
     playerSelection == "paper" && computerSelection == "rock"
   ) {
     finalMessage = "You won this round 😊";
-    playerWon = 1;
+    playerScore += 1;
+  } else {
+    finalMessage = "You lost that round 😔";
+    computerScore += 1;
   }
+
+  updateScores()
   return finalMessage + `\n${playerSelection} vs. ${computerSelection}`;
 }
 
-// function getPlayerSelection () {
-//   while (true) {
-//     let playerInput = prompt("Choose one:", "rock, paper, or scissors");
-//     if (moveOptions.includes(playerInput)) {
-//       return playerInput;
-//     } else {
-//       alert("That's not an option! Please choose rock, paper, or scissors.");
-//     };
-//   };
-// }
+function updateScores() {
+  playerScoreCard.textContent = playerScore;
+  computerScoreCard.textContent = computerScore;
+}
+
+
 
 // function game() {
 //   let playerWins = 0;
@@ -63,8 +71,4 @@ function playOneRound(playerSelection, computerSelection) {
 //   let endingMessage = playerWins > computerWins ? 
 //     "You won the game!" : "You lost the game.";
 //   return endingMessage
-// }
-
-// while (true) {
-//   alert(game());
 // }
