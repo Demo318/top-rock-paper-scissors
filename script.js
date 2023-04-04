@@ -2,8 +2,8 @@ const moveOptions = ["rock", "paper", "scissors"];
 
 const buttonsContainer = document.querySelector('.player-selections');
 
-const results = document.createElement('p');
-buttonsContainer.appendChild(results);
+const roundResultField = document.querySelector('.round-result');
+const gameResultField = document.querySelector('.game-result')
 
 const selectionButtons = document.querySelectorAll(".selection-button");
 
@@ -17,7 +17,7 @@ for (button of selectionButtons) {
   button.addEventListener('click', function(e) {
     tryGameReset()
     let result = playOneRound(this.id, getComputerChoice());
-    results.textContent = result;
+    roundResultField.innerHTML = result;
     if (playerScore >= 5 || computerScore >= 5) {
       announceWinner()
     };
@@ -26,7 +26,8 @@ for (button of selectionButtons) {
 
 function tryGameReset() {
   if (playerScore >= 5 || computerScore >= 5) {
-    results.textContent = "";
+    roundResultField.textContent = "";
+    gameResultField.textContent = "";
     playerScore = 0;
     computerScore = 0;
   }
@@ -35,11 +36,10 @@ function tryGameReset() {
 function announceWinner() {
   let gameEndMessage = "";
   if (playerScore >= 5) {
-    gameEndMessage = "Congratulations, you won!"
+    gameResultField.textContent = "Congratulations, you won!";
   } else {
-    gameEndMessage = "Oh, no! The computer beat you."
-  }
-  results.innerHTML += `<br />${gameEndMessage}`;
+    gameResultField.textContent =  "Oh, no! The computer beat you.";
+  };
 }
 
 function getComputerChoice() {
@@ -51,7 +51,7 @@ function playOneRound(playerSelection, computerSelection) {
   let finalMessage = "";
   
   if (playerSelection == computerSelection){
-    finalMessage = "It's a draw!";
+    finalMessage = "It's a draw ✏️";
 
   } else if (
     playerSelection == "rock" && computerSelection == "scissors" ||
@@ -66,7 +66,7 @@ function playOneRound(playerSelection, computerSelection) {
   }
 
   updateScores()
-  return finalMessage + `\n${playerSelection} vs. ${computerSelection}`;
+  return finalMessage + `<br>${playerSelection} vs. ${computerSelection}`;
 }
 
 function updateScores() {
