@@ -1,0 +1,47 @@
+/* Some styling reset */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.player-selections {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.selection-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px;
+}
+
+.scorecard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.scorecard > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer {
+  justify-self:last baseline;
+}

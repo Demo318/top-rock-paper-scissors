@@ -6,20 +6,36 @@
     <script type="text/javascript" src="script.js" defer></script>
   </head>
   <body>
-    <div class="player-selections">
-      <button class="selection-button" id="rock">Rock</button>
-      <button class="selection-button" id="paper">Paper</button>
-      <button class="selection-button" id="scissors">Scissors</button>
-    </div>
-    <div class="scorecard">
-      <div class="player-score">
-        <h3>Player</h3>
-        <p></p>
+    <div class="game-body">
+      <div class="player-selections">
+        <div class="selection-button" id="rock">
+          <img class="selection-icon" src="icons/png/001-fist.png" alt="icon of closed fist for the rock of rock paper scissors" />
+          <div class="selction-text">Rock</div>
+        </div>
+        <div class="selection-button" id="paper">
+          <img class="selection-icon" src="icons/png/002-hand-palm.png" alt="icon of open hand for the paper of rock paper scissors" />
+          <div class="selction-text">Paper</div>
+        </div>
+        <div class="selection-button" id="scissors">
+          <img class="selection-icon" src="icons/png/003-peace.png" alt="icon of hand with two fingers extended for the scissors of rock paper scissors" />
+          <div class="selction-text">Scissors</div>
+        </div>
       </div>
-      <div class="computer-score">
-        <h3>Computer</h3>
-        <p></p>
+      <div class="scorecard">
+        <div class="player-score">
+          <h3>Player</h3>
+          <p>0</p>
+        </div>
+        <div class="computer-score">
+          <h3>Computer</h3>
+          <p>0</p>
+        </div>
       </div>
     </div>
+    <div class="footer">
+      <div class="code-credit">Made by Devin Mork</div>
+      <div class="icon-credit">Icons made by <a href="https://www.flaticon.com/authors/cuputo" title="Cuputo">Cuputo</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </div>
+    
   </body>
 </html>
